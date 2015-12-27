@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/iv_cover"
+        android:layout_width="@dimen/notification_big_image_width"
+        android:layout_height="@dimen/notification_big_image_width"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/notification_big_image_width"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/tv_song"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_padding"
+                android:layout_marginRight="@dimen/huge_padding"
+                android:layout_alignParentRight="true"
+                android:gravity="left|top"
+                android:layout_marginTop="@dimen/medium_padding"
+                style="@style/NotificationTitle"
+                android:ellipsize="end"
+                android:maxLines="1"/>
+
+            <ImageView
+                android:id="@+id/iv_close_player_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/abc_ic_clear_mtrl_alpha"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:paddingLeft="@dimen/medium_padding"
+                />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_artist"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/large_padding"
+            android:layout_marginRight="@dimen/huge_padding"
+            android:gravity="left|top"
+            style="@style/NotificationText"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/player_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/notification_btn_height"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:id="@+id/iv_prew"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                style="@style/NotificationButton"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/prev"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:id="@+id/iv_play"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_action_play_button"
+                style="@style/NotificationButton"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:id="@+id/iv_next"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                style="@style/NotificationButton"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/next"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

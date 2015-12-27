@@ -1,0 +1,14 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="medium_padding">8dp</dimen>
+    <dimen name="large_padding">16dp</dimen>
+    <dimen name="huge_padding">32dp</dimen>
+
+    <dimen name="notification_btn_height">51dp</dimen>
+    <dimen name="notification_image_width">64dp</dimen>
+    <dimen name="notification_big_image_width">120dp</dimen>
+
+</resources>

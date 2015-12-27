@@ -1,0 +1,27 @@
+<resources>
+
+
+
+    <style name="NotificationTitle">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="NotificationButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+
+    <style name="NotificationText">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+
+
+</resources>

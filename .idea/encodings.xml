@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/cashefolder/FolderManipulator.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/cashefolder/StorageUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/main/FFmpegMediaPlayer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/main/MediaPlayerWrapper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/main/PlayerService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/main/TTAudioFileStream.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/main/TTAudioTrack.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/playercore/MediaBtnsInterceptor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/playercore/PlaybackNotifier.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/playercore/PlayerCore.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/playercore/PlayerCoreLollipop.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/playercore/PlayerCorePreLollipop.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/playercore/RemoteControlClientCompat.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/playercore/RemoteControlHelper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/utils/AudioPool.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/utils/HighPriorityThreadFactory.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/java/stasssm/streamlibrary/utils/PlayerUtilities.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/jni" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/obj" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/res/drawable/ic_action_play_button.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/res/drawable/ic_notif_pause_button.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/res/drawable/next.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/res/drawable/prev.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/res/layout/notif_player.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/res/layout/notif_player_big.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/streamlibrary/src/main/res/values/styles.xml" charset="UTF-8" />
+  </component>
+</project>
+
