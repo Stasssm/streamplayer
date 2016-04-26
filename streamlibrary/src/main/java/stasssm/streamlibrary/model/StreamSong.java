@@ -5,12 +5,12 @@ package stasssm.streamlibrary.model;
  */
 public interface StreamSong {
 
-    public String getUniqueIdentifier() ;
-    public boolean isOffline() ;
-    public String isOfflineExists() ;
-    public int getDuration() ;
-    public String getStreamUrl() ;
-    public String getTitle();
-    public String getArtist();
+    String getUniqueIdentifier() ;
+    boolean isOffline() ;
+    String isOfflineExists() ;
+    int getDuration() ;
+    String getStreamUrl() ;
+    String getTitle();
+    String getArtist();
 
 }

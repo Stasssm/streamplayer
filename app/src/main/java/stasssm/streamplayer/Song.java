@@ -1,5 +1,8 @@
 package stasssm.streamplayer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import stasssm.streamlibrary.model.StreamSong;
 
 /**
@@ -7,12 +10,12 @@ import stasssm.streamlibrary.model.StreamSong;
  */
 public class Song implements StreamSong {
 
-    private String id = "adnkcnrncrl" ;
+    private String id = "adnkcnrncrldhj" ;
     private String name = "stas" ;
     private String artistName = "stas" ;
     private boolean isOffline = false ;
-    private int duration = 10000 ;
-    private String url = "http://www.stephaniequinn.com/Music/Commercial%20DEMO%20-%2005.mp3";
+    private int duration = 2319 ;
+    private String url = "http://musix-lg-proxy.mboxltd.com/musicx/tracks/{ZmlsXzk0MTYxMDYubXAz}";
 
 
 
@@ -50,4 +53,13 @@ public class Song implements StreamSong {
     public String getArtist() {
         return artistName;
     }
+
+    public static ArrayList<StreamSong> generateSongs() {
+        ArrayList<StreamSong> songs = new ArrayList<>();
+        songs.add(new Song());
+        songs.add(new Song());
+        return songs ;
+    }
+
+
 }

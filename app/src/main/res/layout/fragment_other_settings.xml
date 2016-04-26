@@ -1,0 +1,205 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:gravity="center_horizontal"
+    tools:context="stasssm.streamplayer.PlayerActivity"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/player_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
+
+    <LinearLayout
+        android:id="@+id/player_switch_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_below="@+id/player_meta_data">
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shuffle mode"
+            android:id="@+id/player_switch_shuffle"
+            android:layout_gravity="center_horizontal" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repeat mode"
+            android:id="@+id/player_switch_repeat"
+            android:layout_gravity="center_horizontal" />
+
+        <Switch
+            android:id="@+id/player_switch_external_storage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="true"
+            android:text="External Storage"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:text="Internal Storage Path"/>
+
+            <EditText
+                android:id="@+id/player_internal_path"
+                android:layout_weight="2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                style="@style/ButtonStyle"
+                android:id="@+id/player_save_internal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="External Storage Path"/>
+
+            <EditText
+                android:id="@+id/player_external_path"
+                android:layout_weight="2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                style="@style/ButtonStyle"
+                android:id="@+id/player_save_external"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Storage size"/>
+
+            <EditText
+                android:id="@+id/player_storage_size"
+                android:layout_weight="2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                style="@style/ButtonStyle"
+                android:id="@+id/player_save_storage_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Buffer size"/>
+
+            <EditText
+                android:id="@+id/player_buffer_size"
+                android:layout_weight="2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                style="@style/ButtonStyle"
+                android:id="@+id/player_save_buffe_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/player_switch_layout">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/player_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/player_current_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/player_total_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/player_buff_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

@@ -38,6 +38,10 @@ public class TTAudioTrack {
     }
 
 
+    public static long  START_BUFFER_SIZE = 256 ;
+
+
+
     private String songId;
     private AudioTrack track;
     TTAudioFileStream audioFileStream;
@@ -361,7 +365,7 @@ public class TTAudioTrack {
                         || state.downloadState == TTAudioFileStream.DownloadState.TemporaryError) {
                     return true;
                 }
-                return state.downloadState != TTAudioFileStream.DownloadState.Initial && state.downloadedSize >= 256 * 1024;
+                return state.downloadState != TTAudioFileStream.DownloadState.Initial && state.downloadedSize >= START_BUFFER_SIZE * 1024;
             }
         });
     }
@@ -577,7 +581,7 @@ public class TTAudioTrack {
         minBufferSize = AudioTrack.getMinBufferSize(sampleRate, channelConfig, AudioFormat.ENCODING_PCM_16BIT);
 
         track = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate, channelConfig,
-                AudioFormat.ENCODING_PCM_16BIT, minBufferSize * 2, AudioTrack.MODE_STREAM);
+                AudioFormat.ENCODING_PCM_16BIT, minBufferSize * 2, AudioTrack.MODE_STREAM,80);
 
         track.setPositionNotificationPeriod(Mp3Decoder.getDecoderSampleRate());
         track.setPlaybackPositionUpdateListener(playbackPositionUpdateListener);
@@ -597,4 +601,8 @@ public class TTAudioTrack {
         //	requestPlay();
     }
 
+
+    public AudioTrack getTrack() {
+        return track;
+    }
 }

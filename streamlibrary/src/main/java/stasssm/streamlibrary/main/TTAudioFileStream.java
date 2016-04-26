@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import stasssm.streamlibrary.PlayerInitializer;
+import stasssm.streamlibrary.cashefolder.FolderManipulator;
 import stasssm.streamlibrary.cashefolder.StorageUtil;
 import stasssm.streamlibrary.model.StreamSong;
 import stasssm.streamlibrary.utils.Connectivity;
@@ -199,16 +200,9 @@ public class TTAudioFileStream {
 			}
 		}
 
-		cacheDir = new File(cacheDirPath);
-
-		if (!cacheDir.exists()) {
-            Log.d("TotalError","cacheDir.exists()");
-			setState(DownloadState.Error, -1, -1);
-			return;
-		}
 
         file = new File(cacheDirPath, "filen" + this.getSongId()+".mp3");
-
+		//FolderManipulator.maybeClearCashe() ;
         if (!file.exists()) {
             try {
                boolean usCreated =  file.createNewFile() ;
@@ -218,6 +212,7 @@ public class TTAudioFileStream {
             }
         }
 
+	//	FolderManipulator.maybeClearCashe(file) ;
 		downloadedSize = file.length();
 
 		try {

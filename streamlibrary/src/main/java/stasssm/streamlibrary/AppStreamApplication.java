@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
+import org.jaudiotagger.tag.TagOptionSingleton;
+
 import stasssm.streamlibrary.main.PlayerService;
 
 /**
@@ -19,7 +21,13 @@ public class AppStreamApplication extends Application {
     public void onCreate() {
         super.onCreate();
         startPlayerService();
+        setTagOptions();
     }
+
+    private void setTagOptions() {
+        TagOptionSingleton.getInstance().setAndroid(true);
+    }
+
 
     public void startPlayerService() {
         PlayerService playerService = PlayerService.getSharedService();

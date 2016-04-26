@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center">
+
+
+
+
+    <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+        android:id="@+id/container_1"
+        android:layout_marginLeft="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp">
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:progress="50"
+            app:seekBarRotation="CW270"
+            />
+    </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+
+    <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+        android:id="@+id/container_2"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_toLeftOf="@+id/container_1"
+        android:layout_height="350dp">
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+            android:id="@+id/seekBar_2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:progress="30"
+            app:seekBarRotation="CW270" />
+    </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+    <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+        android:id="@+id/container_3"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_toLeftOf="@+id/container_2"
+        android:layout_height="350dp">
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+            android:id="@+id/seekBar_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:progress="70"
+            app:seekBarRotation="CW270" />
+    </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+
+    <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+        android:id="@+id/container_4"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_toLeftOf="@+id/container_3"
+        android:layout_height="350dp">
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+            android:id="@+id/seekBar_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:progress="20"
+            app:seekBarRotation="CW270" />
+    </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+    <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+        android:id="@+id/container_5"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_toLeftOf="@+id/container_4"
+        android:layout_height="350dp">
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+            android:id="@+id/seekBar_5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:progress="10"
+            app:seekBarRotation="CW270" />
+    </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_900"
+        android:textSize="16sp"
+        android:text="60Hz"
+        android:layout_marginLeft="-10dp"
+        android:layout_below="@+id/container_5"
+        android:layout_alignLeft="@+id/container_5"
+        android:layout_alignStart="@+id/container_5"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_900"
+        android:textSize="16sp"
+        android:text="230Hz"
+        android:layout_marginLeft="-10dp"
+        android:layout_below="@+id/container_4"
+        android:layout_alignLeft="@+id/container_4"
+        android:layout_alignStart="@+id/container_4"
+        android:id="@+id/textView" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_900"
+        android:textSize="16sp"
+        android:text="910Hz"
+        android:layout_marginLeft="-10dp"
+        android:layout_below="@+id/container_3"
+        android:layout_alignLeft="@+id/container_3"
+        android:layout_alignStart="@+id/container_3"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_900"
+        android:textSize="16sp"
+        android:text="3KHz"
+        android:layout_marginLeft="-10dp"
+        android:layout_below="@+id/container_2"
+        android:layout_alignLeft="@+id/container_2"
+        android:layout_alignStart="@+id/container_2"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_900"
+        android:textSize="16sp"
+        android:text="14KHz"
+        android:layout_marginLeft="-10dp"
+        android:layout_below="@+id/container_1"
+        android:layout_alignLeft="@+id/container_1"
+        android:layout_alignStart="@+id/container_1" />
+
+
+
+</RelativeLayout>

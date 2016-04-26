@@ -1,8 +1,28 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textColorSecondary">@color/c_50</item>
+        <item name="elevation">0dp</item>
+        <item name="colorPrimary">@color/c_500</item>
+        <item name="colorPrimaryDark">@color/c_700</item>
+        <item name="android:textColorPrimary">@color/c_50</item>
+        <item name="android:colorPrimaryDark">@color/c_700</item>
+        <item name="android:colorPrimary">@color/c_500</item>
+        <item name="android:statusBarColor">@color/c_700</item>
     </style>
+
+    <style name="ButtonStyle">
+        <item name="android:background">@drawable/selector_btn</item>
+        <item name="android:textColor">@color/c_50</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 
 </resources>

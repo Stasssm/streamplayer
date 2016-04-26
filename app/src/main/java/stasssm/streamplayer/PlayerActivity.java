@@ -1,53 +1,340 @@
 package stasssm.streamplayer;
 
-import android.support.v7.app.ActionBarActivity;
+import android.media.audiofx.Equalizer;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+
+import com.triggertrap.seekarc.SeekArc;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import stasssm.streamlibrary.helpers.PlayerHelperActivity;
+import stasssm.streamlibrary.main.FFmpegMediaPlayer;
 import stasssm.streamlibrary.main.PlayerService;
 import stasssm.streamlibrary.model.StreamSong;
+import stasssm.streamlibrary.tagging.FileTagger;
+import stasssm.streamplayer.drawer.NawAdapter;
+import stasssm.streamplayer.equalizer.EqualizerFragment;
+import stasssm.streamplayer.settings.SettingsFragment;
+import stasssm.streamplayer.storage.StorageFragment;
+import stasssm.streamplayer.tags.TagsFragment;
+import stasssm.streamplayer.visualizer.VisualizerFragment;
 
 
-public class PlayerActivity extends ActionBarActivity {
+public class PlayerActivity extends PlayerHelperActivity {
+
+
+    @Bind(R.id.play_pause_btn)
+    ImageButton playPauseBtn;
+    @Bind(R.id.player_prev)
+    ImageButton playerPrev;
+    @Bind(R.id.seekArc)
+    SeekArc seekArc;
+    @Bind(R.id.player_next)
+    ImageButton playerNext;
+    @Bind(R.id.choose_songs)
+    Button chooseSongs;
+    @Bind(R.id.left_drawer)
+    RecyclerView leftDrawerRecycler;
+    @Bind(R.id.player_fragment_continer)
+    FrameLayout playerFragmentContainer;
+
+    PlayerService playerService;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player);
-        PlayerService playerService =  PlayerService.getSharedService() ;
-        if (playerService != null ) {
-            List<StreamSong> songs  = new ArrayList<>() ;
-            songs.add(new Song()) ;
-            songs.add(new Song()) ;
+        setContentView(R.layout.activity_main_player);
+        ButterKnife.bind(this);
+        runPlayer();
+        initSeekBar();
+        initSwithes();
+        initPath();
+        initStorageSize();
+        initDrawer();
+        initRecycler();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //mMetaButton.setVisibility(View.VISIBLE);
+    }
+
+    private void initRecycler() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        leftDrawerRecycler.setLayoutManager(linearLayoutManager);
+        NawAdapter nawAdapter = new NawAdapter(this);
+        leftDrawerRecycler.setAdapter(nawAdapter);
+    }
+
+    private void initDrawer() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.open,
+                R.string.close
+        )
+
+        {
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                invalidateOptionsMenu();
+                syncState();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+                syncState();
+            }
+        };
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        actionBarDrawerToggle.syncState();
+    }
+
+
+    private void runPlayer() {
+        playerService = PlayerService.getSharedService();
+        if (playerService != null) {
+            List<StreamSong> songs = Song.generateSongs() ;
             playerService.setCatalogSongs(songs);
             playerService.selectSong(0);
         }
     }
 
+    private void initPath() {
+        //mExternalPath.setText(StorageUtil.getStorage().getExternalStoragePath());
+        // mInternalPath.setText(StorageUtil.getStorage().getInternalStoragePath());
+    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_player, menu);
-        return true;
+    private void initStorageSize() {
+        //mStorageEditText.setText(StorageUtil.getStorage().getMaxStorage() + "");
+        // mBufferSize.setText(StorageUtil.getStorage().getBufferStartSize() + "");
+    }
+
+    private void initSwithes() {
+       /* mSwitchRepeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                playerService.setRepeat(isChecked);
+            }
+        });
+        mSwitchShuffle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // playerService.
+            }
+        });
+        mSwitchStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                StorageUtil.getStorage().setUseExternalIfPossible(isChecked);
+            }
+        });
+        */
+    }
+
+
+    private void initSeekBar() {
+        seekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
+            @Override
+            public void onProgressChanged(SeekArc seekArc, int i, boolean b) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekArc seekArc) {
+                stopProgressBar();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekArc seekArc) {
+                if (playerService.getMp() != null) {
+                    int totalDuration = playerService.getMp().getDuration();
+                    int currentPosition = utils.progressToTimer(seekArc.getProgress(), totalDuration);
+                    playerService.seekTo(currentPosition);
+                    updateProgressBar();
+                }
+            }
+        });
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onSongChanged(StreamSong item, int position) {
+        super.onSongChanged(item, position);
+        //FileTagger.getAllTags(item);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    @Override
+    public void onTotalDurationChanged(String duration) {
+        //   mPlayerTotalTime.setText("Total duration : " + duration);
+    }
+
+    @Override
+    public void onPlayingTimeChanged(String currentTime) {
+        // mPlayerCurrentTime.setText("CurrentTime : " + currentTime);
+    }
+
+    @Override
+    protected void updateSeekProgress(int progress) {
+        Log.d("PlayerTag", progress + "");
+        seekArc.setProgress(progress);
+    }
+
+    @Override
+    public void onStateChanged(boolean isPlaying) {
+        super.onStateChanged(isPlaying);
+        if (isPlaying) {
+            //       mPlayerState.setText("State : " + "Playing");
+        } else {
+            //       mPlayerState.setText("State : " + "Paused");
+        }
+    }
+
+    @OnClick(R.id.player_prev)
+    public void prevButton() {
+        playerService.playPrevious();
+    }
+
+    @OnClick(R.id.player_next)
+    public void nextButton() {
+        playerService.playPrevious();
+    }
+
+
+    // @Override
+    public void onBufferingUpdate(FFmpegMediaPlayer mp, int percent) {
+        super.onBufferingUpdate(mp, percent);
+        //   mPlayerBuffPercent.setText("Buffered percent : " + percent);
+    }
+
+    //  @OnClick(R.id.player_meta_data)
+    public void clickMenu(int position) {
+        drawerLayout.closeDrawer(Gravity.LEFT);
+        switch (position) {
+            case 0: {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerFragmentContainer.setVisibility(View.INVISIBLE);
+                    }
+                }, 700);
+                break;
+            }
+            case 1: {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerFragmentContainer.setVisibility(View.VISIBLE);
+                        TagsFragment.start(PlayerActivity.this);
+                    }
+                }, 700);
+                break;
+            }
+            case 2: {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerFragmentContainer.setVisibility(View.VISIBLE);
+                        StorageFragment.start(PlayerActivity.this);
+                    }
+                }, 700);
+                break;
+            }
+            case 3: {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerFragmentContainer.setVisibility(View.VISIBLE);
+                        EqualizerFragment.start(PlayerActivity.this);
+
+                    }
+                }, 700);
+                break;
+            }
+            case 4: {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerFragmentContainer.setVisibility(View.VISIBLE);
+                        VisualizerFragment.start(PlayerActivity.this);
+
+                    }
+                }, 700);
+                break;
+            }
+            case 5 : {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerFragmentContainer.setVisibility(View.VISIBLE);
+                        SettingsFragment.start(PlayerActivity.this);
+
+                    }
+                }, 700);
+                break;
+            }
         }
 
-        return super.onOptionsItemSelected(item);
     }
+
+
+    //@OnClick(R.id.player_save_external)
+    public void clickExternal() {
+        //  StorageUtil.getStorage().setExternalStoragePath(mExternalPath.getText().toString());
+    }
+
+    // @OnClick(R.id.player_save_internal)
+    public void clickInternal() {
+        // StorageUtil.getStorage().setExternalStoragePath(mInternalPath.getText().toString());
+    }
+
+    //@OnClick(R.id.player_save_storage_size)
+    public void clickSize() {
+        try {
+            //   long l = Long.parseLong(mStorageEditText.getText().toString(), 10);
+            //    StorageUtil.getStorage().changeMaxStorageSize(l);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // @OnClick(R.id.player_save_buffe_size)
+    public void clickBufferSize() {
+       /* try {
+            long l = Long.parseLong(mBufferSize.getText().toString(), 10);
+            StorageUtil.getStorage().changeMaxStorageSize(l);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } */
+    }
+
+
 }

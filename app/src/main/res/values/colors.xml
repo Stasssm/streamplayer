@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="progress_gray">#607D8B</color>
+    <color name="default_blue_light">#263238</color>
+
+    <color name="c_500">#607D8B</color>
+    <color name="c_900">#263238</color>
+    <color name="c_700">#455A64</color>
+    <color name="c_50">#ECEFF1</color>
+
+</resources>

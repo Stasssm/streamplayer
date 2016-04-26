@@ -267,6 +267,11 @@ public class MediaPlayerWrapper extends FFmpegMediaPlayer {
 
     }
 
+
+    public TTAudioTrack getTrack() {
+        return track;
+    }
+
     @Override
     public int getCurrentPosition() {
         return track.getPlayPosition() ;

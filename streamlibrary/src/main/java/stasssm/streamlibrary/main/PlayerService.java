@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.media.AudioTrack;
 import android.os.IBinder;
 
 import java.io.File;
@@ -408,6 +409,12 @@ public class PlayerService extends Service implements
         nextPlayer.prepareAsyncNext();
     }
 
+    public void seekTo(int msk) {
+        if (mp != null) {
+            mp.seekTo(msk) ;
+        }
+    }
+
 
     public void playNext() {
         if (isRepeat && selectedPosition + 1 == getCatalogSongs().size()) {
@@ -645,6 +652,17 @@ public class PlayerService extends Service implements
     public void removeItems(ArrayList<StreamSong> toDelete) {
         catalogSongs.removeAll(toDelete);
     }
+
+    public AudioTrack getCurrentAudioTrack() {
+        MediaPlayerWrapper mediaPlayer = getMp();
+        if (mediaPlayer != null ) {
+            TTAudioTrack ttAudioTrack = mediaPlayer.getTrack();
+            return ttAudioTrack.getTrack() ;
+        }
+        return  null ;
+    }
+
+
 
     @Override
     public void onCompletion(FFmpegMediaPlayer mp) {

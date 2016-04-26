@@ -10,58 +10,61 @@ import java.io.File;
  * Created by Стас on 25.08.2015.
  */
 public class FolderManipulator {
-
-    private static final long MAXSIZE = 1073741824L ;
+    static long MAXSIZE = 357913941L ;
 
     // return false if directory can not be cleared
     // or not enough space on the device
-    public boolean maybeClearCashe(File file) {
-        if (file != null) {
-            long length = file.length() ;
-            long availableBytes = availableExternalSpaceBytes() ;
+    public static boolean maybeClearCashe() {
+        try {
+            long availableBytes = availableExternalSpaceBytes();
             long dirSize = dirSize(new File(StorageUtil.getStorage().getCasheDir()));
-            long sumSize = dirSize ;
+            long sumSize = dirSize;
             if (MAXSIZE > sumSize && sumSize < availableBytes) {
-                return true ;
+                return true;
             } else {
                 File encDir = new File(StorageUtil.getStorage().getCasheDir());
                 if (encDir.exists()) {
-                    File[] files = encDir.listFiles() ;
-                    if (files != null && files.length != 0) {
-                        File fileDelete = files[0] ;
+                    File[] files = encDir.listFiles();
+                    if (files != null && files.length > 2) {
+                        File fileDelete = files[0];
                         for (File fileBidder : files) {
-                            if  (fileDelete.lastModified() > fileBidder.lastModified()) {
-                                fileDelete = fileBidder ;
+                            if (fileDelete.lastModified() > fileBidder.lastModified()) {
+                                fileDelete = fileBidder;
                             }
                         }
                         // TODO is now playing
                         fileDelete.delete();
-                        return maybeClearCashe(file);
+                        return maybeClearCashe();
                     } else {
-                        return false ;
+                        return false;
                     }
                 }
             }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false ;
         }
-        return false ;
     }
 
 
     /**
      * Return the size of a directory in bytes
      */
-    private  long dirSize(File dir) {
+    private static long dirSize(File dir) {
 
         if (dir.exists()) {
             long result = 0;
             File[] fileList = dir.listFiles();
-            for(int i = 0; i < fileList.length; i++) {
-                // Recursive call if it's a directory
-                if(fileList[i].isDirectory()) {
-                    result += dirSize(fileList [i]);
-                } else {
-                    // Sum the file size in bytes
-                    result += fileList[i].length();
+            if (fileList != null) {
+                for (int i = 0; i < fileList.length; i++) {
+                    // Recursive call if it's a directory
+                    if (fileList[i].isDirectory()) {
+                        result += dirSize(fileList[i]);
+                    } else {
+                        // Sum the file size in bytes
+                        result += fileList[i].length();
+                    }
                 }
             }
             return result; // return the file size
@@ -69,7 +72,7 @@ public class FolderManipulator {
         return 0;
     }
 
-    private long availableExternalSpaceBytes() {
+    private static long availableExternalSpaceBytes() {
         long availableSpace = -1L;
         StatFs stat = new StatFs(Environment.getExternalStorageDirectory().getPath());
 

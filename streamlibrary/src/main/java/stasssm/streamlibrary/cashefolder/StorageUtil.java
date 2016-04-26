@@ -1,6 +1,11 @@
 package stasssm.streamlibrary.cashefolder;
 
+import android.media.AudioTrack;
 import android.os.Environment;
+
+import stasssm.streamlibrary.main.TTAudioFileStream;
+import stasssm.streamlibrary.main.TTAudioTrack;
+import stasssm.streamlibrary.model.StreamSong;
 
 /**
  * Created by Стас on 25.08.2015.
@@ -65,6 +70,29 @@ public class StorageUtil {
         this.useExternalIfPossible = useExternalIfPossible;
         return storageUtil;
     }
+
+    public String getNameFile(StreamSong song) {
+        return "filen" +  song.getUniqueIdentifier() + ".mp3" ;
+    }
+
+    public void changeMaxStorageSize(long size) {
+        FolderManipulator.MAXSIZE = size  ;
+    }
+
+    public long getMaxStorage() {
+        return FolderManipulator.MAXSIZE  ;
+    }
+
+
+    public void setBufferStartSize(long size) {
+        TTAudioTrack.START_BUFFER_SIZE = size ;
+    }
+
+    public long getBufferStartSize() {
+        return TTAudioTrack.START_BUFFER_SIZE ;
+    }
+
+
 
 }
 
