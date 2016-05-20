@@ -80,12 +80,6 @@ public class PlayerService extends Service implements
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         L.d("PlayerServiceLife", "OnStartCommand") ;
-     //   if (KillReciever.isTaskRemoved) {
-    //        sharedService = null ;
-    //        KillReciever.isTaskRemoved = false ;
-    //        stopSelf();
-    //        return START_NOT_STICKY ;
-    //    }
         if (sharedService == null) {
             sharedService = this;
             mNotifier = new PlaybackNotifier(this);
@@ -447,11 +441,13 @@ public class PlayerService extends Service implements
         updateNotification();
     }
 
-    public void togglePlayPause() {
+    public boolean togglePlayPause() {
         if (isPlaying()) {
             requestPause();
+            return false ;
         } else {
             requestPlay();
+            return true ;
         }
     }
 

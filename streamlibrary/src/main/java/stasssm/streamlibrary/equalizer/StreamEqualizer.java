@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Стас on 16.04.2016.
+ * Created by Stas on 16.04.2016.
  */
 public class StreamEqualizer {
 

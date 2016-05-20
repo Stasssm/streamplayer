@@ -31,8 +31,10 @@ import stasssm.streamlibrary.model.StreamSong;
 import stasssm.streamlibrary.tagging.FileTagger;
 import stasssm.streamplayer.drawer.NawAdapter;
 import stasssm.streamplayer.equalizer.EqualizerFragment;
+import stasssm.streamplayer.mediaStore.StoreFragment;
 import stasssm.streamplayer.settings.SettingsFragment;
 import stasssm.streamplayer.storage.StorageFragment;
+import stasssm.streamplayer.streamUrl.UrlFragment;
 import stasssm.streamplayer.tags.TagsFragment;
 import stasssm.streamplayer.visualizer.VisualizerFragment;
 
@@ -65,9 +67,6 @@ public class PlayerActivity extends PlayerHelperActivity {
         ButterKnife.bind(this);
         runPlayer();
         initSeekBar();
-        initSwithes();
-        initPath();
-        initStorageSize();
         initDrawer();
         initRecycler();
     }
@@ -75,7 +74,15 @@ public class PlayerActivity extends PlayerHelperActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //mMetaButton.setVisibility(View.VISIBLE);
+        playerService.setPlayerListener(this);
+        changePlayBtn(playerService.isPlaying());
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        playerService.setPlayerListener(null);
     }
 
     private void initRecycler() {
@@ -129,40 +136,19 @@ public class PlayerActivity extends PlayerHelperActivity {
         }
     }
 
-    private void initPath() {
-        //mExternalPath.setText(StorageUtil.getStorage().getExternalStoragePath());
-        // mInternalPath.setText(StorageUtil.getStorage().getInternalStoragePath());
+    @OnClick(R.id.play_pause_btn)
+    public void clickPlay() {
+        playPauseBtn.setImageResource(playerService.togglePlayPause()? R.drawable.pause_black
+                : R.drawable.play_black);
     }
 
-    private void initStorageSize() {
-        //mStorageEditText.setText(StorageUtil.getStorage().getMaxStorage() + "");
-        // mBufferSize.setText(StorageUtil.getStorage().getBufferStartSize() + "");
-    }
-
-    private void initSwithes() {
-       /* mSwitchRepeat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                playerService.setRepeat(isChecked);
-            }
-        });
-        mSwitchShuffle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // playerService.
-            }
-        });
-        mSwitchStorage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                StorageUtil.getStorage().setUseExternalIfPossible(isChecked);
-            }
-        });
-        */
+    private void changePlayBtn(boolean isPlaying) {
+        playPauseBtn.setImageResource(isPlaying ? R.drawable.pause_black : R.drawable.play_black);
     }
 
 
     private void initSeekBar() {
+        seekArc.setTouchInSide(false);
         seekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
             @Override
             public void onProgressChanged(SeekArc seekArc, int i, boolean b) {
@@ -211,6 +197,7 @@ public class PlayerActivity extends PlayerHelperActivity {
     @Override
     public void onStateChanged(boolean isPlaying) {
         super.onStateChanged(isPlaying);
+        changePlayBtn(isPlaying);
         if (isPlaying) {
             //       mPlayerState.setText("State : " + "Playing");
         } else {
@@ -228,6 +215,19 @@ public class PlayerActivity extends PlayerHelperActivity {
         playerService.playPrevious();
     }
 
+    @OnClick(R.id.choose_songs)
+    public void chooseSongs() {
+        StoreFragment fragment = new StoreFragment() ;
+        fragment.show(getFragmentManager(), StoreFragment.TAG);
+    }
+
+    @OnClick(R.id.choose_url)
+    public void chooseUrl() {
+        UrlFragment fragment = new UrlFragment() ;
+        fragment.show(getFragmentManager(),UrlFragment.TAG);
+    }
+
+
 
     // @Override
     public void onBufferingUpdate(FFmpegMediaPlayer mp, int percent) {
@@ -235,7 +235,6 @@ public class PlayerActivity extends PlayerHelperActivity {
         //   mPlayerBuffPercent.setText("Buffered percent : " + percent);
     }
 
-    //  @OnClick(R.id.player_meta_data)
     public void clickMenu(int position) {
         drawerLayout.closeDrawer(Gravity.LEFT);
         switch (position) {
@@ -305,36 +304,6 @@ public class PlayerActivity extends PlayerHelperActivity {
 
     }
 
-
-    //@OnClick(R.id.player_save_external)
-    public void clickExternal() {
-        //  StorageUtil.getStorage().setExternalStoragePath(mExternalPath.getText().toString());
-    }
-
-    // @OnClick(R.id.player_save_internal)
-    public void clickInternal() {
-        // StorageUtil.getStorage().setExternalStoragePath(mInternalPath.getText().toString());
-    }
-
-    //@OnClick(R.id.player_save_storage_size)
-    public void clickSize() {
-        try {
-            //   long l = Long.parseLong(mStorageEditText.getText().toString(), 10);
-            //    StorageUtil.getStorage().changeMaxStorageSize(l);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    // @OnClick(R.id.player_save_buffe_size)
-    public void clickBufferSize() {
-       /* try {
-            long l = Long.parseLong(mBufferSize.getText().toString(), 10);
-            StorageUtil.getStorage().changeMaxStorageSize(l);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } */
-    }
 
 
 }

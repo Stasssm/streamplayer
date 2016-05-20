@@ -10,12 +10,12 @@ import stasssm.streamlibrary.model.StreamSong;
  */
 public class Song implements StreamSong {
 
-    private String id = "adnkcnrncrldhj" ;
+    public String id = "adnkcnrncrldhj" ;
     private String name = "stas" ;
     private String artistName = "stas" ;
     private boolean isOffline = false ;
     private int duration = 2319 ;
-    private String url = "http://musix-lg-proxy.mboxltd.com/musicx/tracks/{ZmlsXzk0MTYxMDYubXAz}";
+    public String url = "http://musix-lg-proxy.mboxltd.com/musicx/tracks/{ZmlsXzk0MTYxMDYubXAz}";
 
 
 

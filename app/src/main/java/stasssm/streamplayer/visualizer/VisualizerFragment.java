@@ -26,7 +26,7 @@ import stasssm.streamplayer.PlayerActivity;
 import stasssm.streamplayer.R;
 
 /**
- * Created by Стас on 16.04.2016.
+ * Created by Stas on 16.04.2016.
  */
 public class VisualizerFragment extends Fragment {
 
