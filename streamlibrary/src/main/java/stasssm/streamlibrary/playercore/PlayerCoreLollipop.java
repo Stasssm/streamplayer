@@ -16,9 +16,7 @@ import stasssm.streamlibrary.main.PlayerService;
 import stasssm.streamlibrary.model.StreamSong;
 
 
-/**
- * Created by Andrey Kulikov on 26.03.15.
- */
+
 @TargetApi(21)
 public class PlayerCoreLollipop implements PlayerCore.BasePlayerCore {
 

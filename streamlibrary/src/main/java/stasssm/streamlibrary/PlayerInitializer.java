@@ -5,6 +5,7 @@ import android.content.Intent;
 import stasssm.streamlibrary.cashefolder.StorageUtil;
 import stasssm.streamlibrary.model.StreamSong;
 import stasssm.streamlibrary.playercore.PlaybackNotifier;
+import stasssm.streamlibrary.playercore.PlayerController;
 
 /**
  * Created by Стас on 12.12.2015.

@@ -1,9 +1,14 @@
 package stasssm.streamplayer;
 
+import android.content.Intent;
 import android.media.audiofx.Equalizer;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,10 +29,12 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import stasssm.streamlibrary.audiowidget.AudioWidget;
 import stasssm.streamlibrary.helpers.PlayerHelperActivity;
 import stasssm.streamlibrary.main.FFmpegMediaPlayer;
 import stasssm.streamlibrary.main.PlayerService;
 import stasssm.streamlibrary.model.StreamSong;
+import stasssm.streamlibrary.playercore.PlayerController;
 import stasssm.streamlibrary.tagging.FileTagger;
 import stasssm.streamplayer.drawer.NawAdapter;
 import stasssm.streamplayer.equalizer.EqualizerFragment;
@@ -59,12 +66,14 @@ public class PlayerActivity extends PlayerHelperActivity {
 
     PlayerService playerService;
     DrawerLayout drawerLayout;
+    PlayerController playerController ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_player);
         ButterKnife.bind(this);
+        playerController = PlayerController.getInstance() ;
         runPlayer();
         initSeekBar();
         initDrawer();
@@ -74,7 +83,7 @@ public class PlayerActivity extends PlayerHelperActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        playerService.setPlayerListener(this);
+        playerController.attachListener(this);
         changePlayBtn(playerService.isPlaying());
     }
 
@@ -82,7 +91,13 @@ public class PlayerActivity extends PlayerHelperActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        playerService.setPlayerListener(null);
+        playerController.detachListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        playerController = null ;
     }
 
     private void initRecycler() {
@@ -91,6 +106,37 @@ public class PlayerActivity extends PlayerHelperActivity {
         NawAdapter nawAdapter = new NawAdapter(this);
         leftDrawerRecycler.setAdapter(nawAdapter);
     }
+
+    public void checkVersionWidget() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
+            startActivityForResult(intent, 1234);
+        } else {
+            setupWidget();
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1234) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && Settings.canDrawOverlays(this)) {
+               setupWidget();
+            }
+        }
+    }
+
+    public void setupWidget() {
+        AudioWidget audioWidget = new AudioWidget.Builder(getApplicationContext())
+                .additionalDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.volume_logo))
+                .playDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.play_widget))
+                .nextTrackDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.next_widget))
+                .prevTrackDrawale(ContextCompat.getDrawable(getApplicationContext(),R.drawable.prev_widget))
+                .build();
+        audioWidget.show(100,100);
+    }
+
 
     private void initDrawer() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -227,6 +273,10 @@ public class PlayerActivity extends PlayerHelperActivity {
         fragment.show(getFragmentManager(),UrlFragment.TAG);
     }
 
+    @OnClick(R.id.create_widget)
+    public void createWidget() {
+        checkVersionWidget();
+    }
 
 
     // @Override

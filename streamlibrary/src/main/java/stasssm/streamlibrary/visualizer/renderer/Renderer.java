@@ -9,7 +9,7 @@ import stasssm.streamlibrary.visualizer.FFTData;
 
 
 /**
- * Created by Стас on 16.04.2016.
+ * Created by Stas on 16.04.2016.
  */
 abstract public class Renderer
 {

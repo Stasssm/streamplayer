@@ -1,7 +1,7 @@
 package stasssm.streamlibrary.visualizer.renderer;
 
 /**
- * Created by Стас on 16.04.2016.
+ * Created by Stas on 16.04.2016.
  */
 import android.graphics.Canvas;
 import android.graphics.Color;

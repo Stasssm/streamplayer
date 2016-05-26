@@ -9,6 +9,7 @@ import stasssm.streamlibrary.PlayerInitializer;
 import stasssm.streamlibrary.main.PlayerService;
 import stasssm.streamlibrary.model.StreamSong;
 import stasssm.streamlibrary.playercore.PlaybackNotifier;
+import stasssm.streamlibrary.playercore.PlayerController;
 
 /**
  * Created by Стас on 13.12.2015.
@@ -19,7 +20,6 @@ public class App extends AppStreamApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
 
         PlayerInitializer.getPlayerInitializer().init(this).
                 setNotifIntentCreator(new PlayerInitializer.NotifIntentCreator() {

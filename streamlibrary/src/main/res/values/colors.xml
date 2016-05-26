@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="aw_dark">#df000000</color>
+    <color name="aw_light">#df000000</color>
+    <color name="aw_expanded">#bc428b</color>
+    <color name="aw_progress">#bc428b</color>
+    <color name="aw_shadow">#df000000</color>
+    <color name="aw_cross_default">#df000000</color>
+    <color name="aw_cross_overlapped">#df000000</color>
+</resources>

@@ -10,6 +10,7 @@ import java.io.File;
  * Created by Стас on 25.08.2015.
  */
 public class FolderManipulator {
+
     static long MAXSIZE = 357913941L ;
 
     // return false if directory can not be cleared

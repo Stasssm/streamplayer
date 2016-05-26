@@ -6,7 +6,7 @@ import android.provider.MediaStore;
 import java.util.ArrayList;
 
 /**
- * Created by ���� on 09.05.2016.
+ * Created by Stas on 09.05.2016.
  */
 public class MediaStoreSong implements StreamSong {
 

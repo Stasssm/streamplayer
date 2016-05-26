@@ -11,4 +11,29 @@
     <dimen name="notification_image_width">64dp</dimen>
     <dimen name="notification_big_image_width">120dp</dimen>
 
+    <dimen name="aw_player_height">87.5dp</dimen>
+    <dimen name="aw_player_width">87.5dp</dimen>
+    <dimen name="aw_play_pause_size">38.4dp</dimen>
+    <dimen name="aw_next_prev_button_size">12.4dp</dimen>
+    <dimen name="aw_next_prev_edges_padding">25dp</dimen>
+    <dimen name="aw_button_size">48dp</dimen>
+    <dimen name="aw_button_padding">7dp</dimen>
+    <dimen name="aw_prev_next_button_extra_padding">3dp</dimen>
+    <dimen name="aw_status_bar_height">25dp</dimen>
+    <dimen name="aw_expand_collapse_widget_padding">4dp</dimen>
+    <dimen name="aw_progress_stroke_width">4dp</dimen>
+    <dimen name="aw_cross_stroke_width">4dp</dimen>
+    <dimen name="aw_shadow_radius">0dp</dimen>
+    <dimen name="aw_shadow_dx">1dp</dimen>
+    <dimen name="aw_shadow_dy">1dp</dimen>
+    <dimen name="aw_bubbles_min_size">5dp</dimen>
+    <dimen name="aw_bubbles_max_size">10dp</dimen>
+    <dimen name="aw_navigation_bar_height">48dp</dimen>
+    <dimen name="aw_edge_offset_collapsed">0dp</dimen>
+    <dimen name="aw_edge_offset_expanded">0dp</dimen>
+    <dimen name="aw_additional_icon_height">15dp</dimen>
+    <dimen name="aw_additional_icon_width">25dp</dimen>
+    <dimen name="aw_additional_icon_padding_from_center">25dp</dimen>
+
+
 </resources>
